@@ -1,18 +1,24 @@
 import os
-
+import numpy
 import torch
 import time
 from tqdm import tqdm
-from utils.basic_utils import FixedNum
-from utils.criterion import curvature_regularization,Bend_Penalty
+from utils.criterion import curvature_regularization,NCCLoss
 
-def train(args, model, loader, criterion, optimizer,scheduler):
+
+
+def FixedNum(number):
+    return round(number, 6)
+
+def train(args, model, loader,  optimizer,scheduler):
     # Train
     model.train()
     train_losses = 0
     NCC_losses = 0
     curvature_losses = 0
+
     loc = args.device
+    criterion = NCCLoss(loc)
     with tqdm(total=len(loader)) as pbar:
         for i, inputs in enumerate(loader):
             # print(model.alpha)
@@ -40,13 +46,13 @@ def train(args, model, loader, criterion, optimizer,scheduler):
 
     return losses,optimizer
 
-def DF_val(args, model, loader,criterion):
-    # Train
-    model.train()
+def val(args, model, loader):
+
     loc = args.device
     NCC_losses = 0
     curvature_losses = 0
     val_losses = 0
+    criterion = NCCLoss(loc)
 
     with torch.no_grad():
         with tqdm(total=len(loader)) as pbar:
