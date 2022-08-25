@@ -15,6 +15,20 @@ This project hosts the main codes for the ACROBAT challenge. We use a weakly sup
 
 >MaskFlownet pre-trained with the FlyingChair dataset was used for deformable registration. The size of input images was 1024×1024 pixels. The loss function were NCC and the curvature loss.
 
+## Installation of MaskFlownet
+The correlation package must be installed first:
+```
+cd network/MaskFlownet-Pytorch/model/correlation_package
+python setup.py install
+
+```
+## References
+
+[1] https://github.com/pimed//ProsRegNet
+
+[2] https://github.com/MWod/DeepHistReg/tree/563dd606899b58e9d220133938d25fd293da15d0
+
+[3] https://github.com/cattaneod/MaskFlownet-Pytorch
 
 
  
