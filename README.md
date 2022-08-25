@@ -13,7 +13,7 @@ This project hosts the main codes for the ACROBAT challenge. We use a weakly sup
 
 * Deformable registration
 
->MaskFlownet pre-trained with the FlyingChair dataset was utilized for deformable registration. The size of the input images was 1024×1024 pixels. The loss functions were NCC and curvature loss.
+>MaskFlownet pre-trained with the Sintel dataset was utilized for deformable registration. The size of the input images was 1024×1024 pixels. The loss functions were NCC and curvature loss.
 
 ## Installation of MaskFlownet
 The correlation package must be installed first:
