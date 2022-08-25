@@ -87,14 +87,14 @@ def main(args):
 if __name__ == '__main__':
 
 
-    args.Pair_path = '/data_sdd/lyh/ACROBAT/results/AF_validate'
-    args.Pair_path_validate = '/data_sdd/lyh/ACROBAT/results/AF_validate'
-    # args.modelname = 'Deformation'
-    args.modelname = 'Affine'
+    args.Pair_path = ''
+    args.Pair_path_validate = ''
+    args.modelname = 'Deformation'
     args.batch_size = 1
     args.patch_size = 512
     args.exp = 'exp010'
     args.device = 'cuda:1'
-    # args.cpt = 'network/MaskFlownet-Pytorch/weights/5adNov03-0005_1000000.pth'
+    args.cpt = 'network/MaskFlownet-Pytorch/weights/5adNov03-0005_1000000.pth'
+
 
     main(args)
