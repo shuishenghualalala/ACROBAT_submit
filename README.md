@@ -20,7 +20,6 @@ The correlation package must be installed first:
 ```
 cd network/MaskFlownet-Pytorch/model/correlation_package
 python setup.py install
-
 ```
 ## References
 
