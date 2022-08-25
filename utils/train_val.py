@@ -1,6 +1,7 @@
 import os
 import numpy
 import torch
+import matplotlib.pyplot as plt
 import time
 from tqdm import tqdm
 from utils.criterion import curvature_regularization,NCCLoss
@@ -61,7 +62,7 @@ def val(args, model, loader):
                 sources = inputs['source'].to(args.device).type(torch.cuda.FloatTensor)
                 targets = inputs['target'].to(args.device).type(torch.cuda.FloatTensor)
 
-                transform_sources, fields,_ = model(sources,targets)
+                transform_sources, fields = model(sources,targets)
                 ncc_loss = torch.mean(criterion(transform_sources,targets)).item()
                 curvature_loss = torch.mean(curvature_regularization(fields, loc)).item()
 

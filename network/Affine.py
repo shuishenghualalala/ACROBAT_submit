@@ -240,4 +240,4 @@ class Affine(nn.Module):
 
         sampling_grid = self.gridGen(theta)
         warped_source = F.grid_sample(source_img, sampling_grid, padding_mode='border', align_corners=False)
-        return warped_source,sampling_grid,theta
+        return warped_source,sampling_grid
