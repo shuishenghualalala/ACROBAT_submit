@@ -9,11 +9,11 @@ This project hosts the main codes for the ACROBAT challenge. We used a weakly su
 
 * Affine registration
 
->A model similar to [1] was used to perform affine registration. It has two inputs, the source image, and the target image. A Resnet block is applied to extract high-level image features. Then, the correlation layer fuses the features of the source image and the target image and generates a vector with six elements to represent the affine parameters. The network was pre-trained with the in-house pathological dataset, which includes 8000 pairs. The size of the input images was 512×512 pixels. The loss function was normalized cross-correlation (NCC).
+>A model similar to [1] was used to perform affine registration. It has two inputs, the source image, and the target image. A Resnet block is applied to extract high-level image features. Then, the correlation layer fuses the features of the source image and the target image and generates a vector with six elements to represent the affine parameters. The network was pre-trained with the in-house pathological dataset, which includes 8000 pairs of images. The size of the input images was 512×512 pixels. The loss function was normalized cross-correlation (NCC). The learning rate was set to 0.00001.
 
 * Deformable registration
 
->The affine parameters generated from the affine network were upsampled. Images after affine registration were the inputs to the deformable network. MaskFlownet pre-trained with the Sintel dataset was utilized for deformable registration. The size of the input images was 1024×1024 pixels. The loss functions were NCC and the curvature loss. The weight value of the curveature loss we used was 50.
+>The affine parameters generated from the affine network were upsampled. Images after affine registration were the inputs to the deformable network. MaskFlownet pre-trained with the Sintel dataset was utilized for deformable registration. The size of the input images was 1024×1024 pixels. The loss functions were NCC and the curvature loss. The weight value of the curveature loss we used was 50. The learning rate was set to 0.00001.
 
 ## Installation of MaskFlownet
 The correlation package must be installed first:
