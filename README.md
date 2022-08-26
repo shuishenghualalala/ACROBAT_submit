@@ -3,17 +3,17 @@ This project hosts the main codes for the ACROBAT challenge. We use a weakly sup
 * Image preprocess
 
 >To locate tissues in slices, Unet was used to get the bounding boxes of tissues. For H&E WSIs, it is easy to extract tissue masks using color deconvolution. So we performed color deconvolution on H&E WSIs to extract the tissue bounding boxes. And then, they were input into Unet as labels to
- train the model. Finally, bounding boxes of IHC WSIs were generated from Unet. Images were cropped according to bounding boxes.
+ train the model. Finally, bounding boxes of IHC WSIs were generated from Unet. Images were cropped according to bounding boxes and downsampled to lower resolution.
  
->We counted the rotation angle interval between each pair of images as labels, which are considered the weak supervision information of the algorithm. The angular difference between the images to be aligned was divided into four intervals, which are [0°,90°], [90°,180°], [180°,270°], [270°,360°], with corresponding labels of 0, 1, 2, 3, respectively. The source images were rotated according to the labels. For example, label 0 for 0 degrees, label 1 for  90 degrees, and so on. 
+>We counted the rotation angle interval between each pair of images as labels, which are considered the weak supervision information of the registration algorithm. The angular difference between the pair of images to be aligned was divided into four intervals, which are [0°,90°], (90°,180°], (180°,270°], [270°,360°), with corresponding labels of 0, 1, 2, 3, respectively. The source images were rotated according to the labels. For example, label 0 for 0 degrees, label 1 for  90 degrees, and so on. 
 
 * Affine registration
 
->A model similar to [1] was used to perform affine registration. The network was pre-trained with the in-house pathological dataset, which includes 8000 pairs. The size of the input images was 512×512 pixels. The loss function was normalized cross-correlation (NCC).
+>A model similar to [1] was used to perform affine registration. It has two inputs, the source image, and the target image. A Resnet block is applied to extract high-level image features. Then, the correlation layer fuses the features of the source image and the target image and generates a vector with six elements to represent the affine parameters. The network was pre-trained with the in-house pathological dataset, which includes 8000 pairs. The size of the input images was 512×512 pixels. The loss function was normalized cross-correlation (NCC).
 
 * Deformable registration
 
->MaskFlownet pre-trained with the Sintel dataset was utilized for deformable registration. The size of the input images was 1024×1024 pixels. The loss functions were NCC and curvature loss.
+>The affine parameters generated from the affine network were upsampled and images after affine registration were the inputs to the deformable network. MaskFlownet pre-trained with the Sintel dataset was utilized for deformable registration. The size of the input images was 1024×1024 pixels. The loss functions were NCC and curvature loss.
 
 ## Installation of MaskFlownet
 The correlation package must be installed first:
