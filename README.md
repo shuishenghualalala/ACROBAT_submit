@@ -13,7 +13,7 @@ This project hosts the main codes for the ACROBAT challenge. We used a weakly su
 
 * Deformable registration
 
->The affine parameters generated from the affine network were upsampled. Images after affine registration were the inputs to the deformable network. MaskFlownet pre-trained with the Sintel dataset was utilized for deformable registration. The size of the input images was 1024×1024 pixels. The loss functions were NCC and curvature loss.
+>The affine parameters generated from the affine network were upsampled. Images after affine registration were the inputs to the deformable network. MaskFlownet pre-trained with the Sintel dataset was utilized for deformable registration. The size of the input images was 1024×1024 pixels. The loss functions were NCC and the curvature loss. The weight value of the curveature loss we used was 50.
 
 ## Installation of MaskFlownet
 The correlation package must be installed first:
